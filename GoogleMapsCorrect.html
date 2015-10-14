@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			#map{
+				width:500px; 
+				height:400px; 
+			}
+		</style>
+		<script src = "https://maps.googleapis.com/maps/api/js"></script>
+		<script> 
+			function initialize() {
+				var mapCanvas = document.getElementById('map'); 
+				var center = {lat: 37.7833, lng: -122.4167}; 
+				var position2 = {lat: 37.2970155,lng: -121.8174109}; 
+				var mapOptions = {
+					center: center, 
+					zoom: 8, 
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				}
+
+				var map = new google.maps.Map(mapCanvas, mapOptions); 
+
+				var marker = new google.maps.Marker({
+					position: center, 
+					map: map
+				}); 
+				var marker2 = new google.maps.Marker({
+					position: position2, 
+					map: map
+				}); 
+
+				/*marker.addListener('click', function() {
+    			//map.setZoom(18);
+    			//map.setCenter(marker.getPosition());
+    			infowindow.open(map, marker); 
+  				});
+				*/			
+
+  				var contentString = '<div id="content">'+
+      				'<div id="siteNotice">'+
+      				'</div>'+
+      				'<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+      				'<div id="bodyContent">'+
+      				'<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+      				'sandstone rock formation in the southern part of the '+
+      				'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+      				'south west of the nearest large town, Alice Springs; 450&#160;km '+
+      				'(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+      				'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+      				'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+      				'Aboriginal people of the area. It has many springs, waterholes, '+
+      				'rock caves and ancient paintings. Uluru is listed as a World '+
+      				'Heritage Site.</p>'+
+      				'<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.		php?title=Uluru&oldid=297882194">'+
+      				'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+      				'(last visited June 22, 2009).</p>'+
+      				'</div>'+
+      				'</div>';
+
+      			/*var contentString2 = '<div id = "contentString2"> ' +
+      					'<p> "this is the info window text for info 
+      					window number 2"</p>' +
+      					'</div>'; 
+      			*/
+
+
+      			var contentString2 = '<div id = "contentTwo">' +
+      				'<p> This is the info for info window number two </p>'
+      				+ '</div>'; 
+
+
+				var infoWindow1 = new google.maps.InfoWindow({
+					content: contentString 
+				}); 
+
+				var infoWindow2 = new google.maps.InfoWindow({
+					content: contentString2
+				}); 
+
+				marker.addListener('click', function() {
+					infoWindow1.open(map, marker); 
+					map.setZoom(12); 
+				}); 
+				
+				marker2.addListener('click', function() {
+					infoWindow2.open(map, marker2); 
+					map.setZoom(5); 
+				}); 
+				/*marker2.addListener('click', function() {
+					//infowindow.open(map, marker2); 
+					map.setZoom(20); 
+					map.setCenter(marker.getPosition()); 
+
+				}); 
+				*/
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+	</head>
+	<body>
+		<div id = "map"></div>
+
+	</body>
+</html>
